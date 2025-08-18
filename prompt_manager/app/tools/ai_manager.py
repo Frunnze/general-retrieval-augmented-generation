@@ -11,6 +11,11 @@ def get_ai_res_with_context(conv_his, context, user_msg):
     ##Task##
     Your task is to answer the user question based on the "Documents" in the "Context" section.
     Also, consider the "Conversation history". Strictly output the answer as specified in "Output" section.
+    Try as hard as possible to accomplish the user request/question. 
+    
+    ##Constrains##
+    - NEVER say that you cannot do something (always find an answer/solution).
+    - Make answers as short and clear as possible.
 
     ##Context##:
     - Documents: ```{context}```

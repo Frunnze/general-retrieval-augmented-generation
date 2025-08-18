@@ -48,3 +48,27 @@ async def add_material(topic: str, file: UploadFile = File(...)):
     except Exception as e:
         print(e)
         return {"msg": "Server Error"}, 500
+    
+
+@materials_router.get("/materials")
+async def get_materials():
+    try:
+        # Query all documents in the topics collection
+        results = topics_col.get()
+        # Return documents and metadata
+        ids = results.get("ids", [])
+        documents = results.get("documents", [])
+        metadatas = results.get("metadatas", [])
+        # Build a list of document objects
+        docs = [
+            {
+                "id": ids[i],
+                "document": documents[i],
+                "metadata": metadatas[i]
+            }
+            for i in range(len(documents))
+        ]
+        return docs
+    except Exception as e:
+        print(e)
+        return {"msg": "Server Error"}, 500
