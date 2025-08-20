@@ -21,3 +21,18 @@ async def add_topic(topic: str):
     except Exception as e:
         print(e)
         return {"msg": "Server Error"}, 500
+
+
+@topics_router.get("/topics")
+async def get_topic():
+    try:
+        topics = []
+        if os.path.exists("topics.json"):
+            with open("topics.json", "r") as file:
+                topics = json.loads(file.read())
+
+        if topics: return topics
+        return {"msg": "No topics!"}, 404
+    except Exception as e:
+        print(e)
+        return {"msg": "Server Error"}, 500
