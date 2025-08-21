@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile, File
+from fastapi import APIRouter, UploadFile, File, Form
 import uuid
 import PyPDF2
 from io import BytesIO
@@ -17,7 +17,7 @@ def extract_pdf_text(pdf_bytes):
     return text
 
 @materials_router.post("/add_material")
-async def add_material(topic: str, file: UploadFile = File(...)):
+async def add_material(topic: str = Form(...), file: UploadFile = File(...)):
     try:
         # Read file content
         content = await file.read()
