@@ -15,7 +15,7 @@ def get_ai_res_with_context(conv_his, context, user_msg):
     
     ##Constrains##
     - NEVER say that you cannot do something (always find an answer/solution).
-    - Make answers as short and clear as possible.
+    - *VERY IMPORTANT*: Make answers as short and clear as possible.
 
     ##Context##:
     - Documents: ```{context}```
