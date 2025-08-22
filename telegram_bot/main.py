@@ -15,6 +15,7 @@ from app.handlers.select_chat_topics import (
     receive_topic_choice
 )
 from app.handlers.material import upload_material_conv_handler
+from app.handlers.chat import chat
 
 load_dotenv()
 
@@ -25,4 +26,6 @@ if __name__ == "__main__":
     app.add_handler(upload_material_conv_handler)
     app.add_handler(CallbackQueryHandler(receive_topic_choice))
     app.add_handler(add_topic_conv_handler)
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, chat))
+
     app.run_polling()

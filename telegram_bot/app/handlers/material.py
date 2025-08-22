@@ -50,10 +50,10 @@ async def upload_material(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
             os.makedirs(tmp_dir, exist_ok=True)
             file_path = f"{tmp_dir}/{document.file_name}"
             await file.download_to_drive(file_path)
-            await update.message.reply_text("PDF downloaded")
             upload_pdf(file_path, context.user_data["upload_topic"])
             if os.path.exists(file_path):
                 os.remove(file_path)
+            await update.message.reply_text("File was processed. Choose the chat topics and start asking questions!")
         else:
             await update.message.reply_text("Upload a PDF file")
     else:

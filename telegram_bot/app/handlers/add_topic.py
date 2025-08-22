@@ -20,6 +20,7 @@ async def receive_topic_name(update: Update, context: ContextTypes.DEFAULT_TYPE)
     topic_name = update.message.text
     add_topic_name(topic_name)
     await update.message.reply_text(f"Topic name '{topic_name}' was added!")
+    return ConversationHandler.END
 
 
 add_topic_conv_handler = ConversationHandler(
