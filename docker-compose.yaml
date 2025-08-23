@@ -1,0 +1,22 @@
+services:
+  prompt_manager:
+    build: ./prompt_manager
+    ports: 
+      - 8040:8000
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - chroma_data_rag:/prompt_manager/chroma
+      - topics_json:/prompt_manager/topics.json
+  
+  telegram_bot:
+    build: ./telegram_bot
+    environment:
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - PROMPT_MANAGER_SERVICE_URL=http://prompt_manager:8000
+    depends_on:
+      - prompt_manager
+
+volumes:
+  chroma_data_rag:
+  topics_json:
