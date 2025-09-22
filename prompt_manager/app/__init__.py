@@ -1,12 +1,13 @@
 from fastapi import FastAPI
-from openai import OpenAI
+# from openai import OpenAI
+from app.tools.model import OpenRouterModel
 from dotenv import load_dotenv
 import os
 import chromadb
 
 
 load_dotenv()
-openai = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+openai = OpenRouterModel()
 chromadb = chromadb.PersistentClient()
 topics_col = chromadb.get_or_create_collection("topics")
 
