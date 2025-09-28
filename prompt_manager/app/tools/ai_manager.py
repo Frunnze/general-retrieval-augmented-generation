@@ -35,10 +35,9 @@ def get_ai_res_with_context(conv_his, context, user_msg):
     return get_ai_res(system_prompt, user_msg)
 
 
-def get_ai_res(system_prompt, user_prompt, model="gpt-5-nano"):
+def get_ai_res(system_prompt, user_prompt, model="x-ai/grok-4-fast:free"):
     print("get_ai_res", system_prompt, user_prompt)
-    res = openai.responses.create(
-        model=model,
+    res = openai.invoke(
         input=[
             {
                 "role": "assistant",
